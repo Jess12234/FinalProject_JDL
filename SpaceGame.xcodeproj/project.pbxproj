@@ -15,6 +15,8 @@
 		29818A2B22675E1D00C2EEB2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29818A2922675E1D00C2EEB2 /* Main.storyboard */; };
 		29818A2D22675E1E00C2EEB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29818A2C22675E1E00C2EEB2 /* Assets.xcassets */; };
 		29818A3022675E1E00C2EEB2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29818A2E22675E1E00C2EEB2 /* LaunchScreen.storyboard */; };
+		29818A4C22675FC100C2EEB2 /* explosion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 29818A4B22675FC100C2EEB2 /* explosion.mp3 */; };
+		29818A4E22675FCA00C2EEB2 /* torpedo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 29818A4D22675FCA00C2EEB2 /* torpedo.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		29818A2C22675E1E00C2EEB2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		29818A2F22675E1E00C2EEB2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		29818A3122675E1E00C2EEB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		29818A4B22675FC100C2EEB2 /* explosion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = explosion.mp3; sourceTree = "<group>"; };
+		29818A4D22675FCA00C2EEB2 /* torpedo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = torpedo.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +70,8 @@
 				29818A2522675E1D00C2EEB2 /* GameScene.swift */,
 				29818A2722675E1D00C2EEB2 /* GameViewController.swift */,
 				29818A2922675E1D00C2EEB2 /* Main.storyboard */,
+				29818A4B22675FC100C2EEB2 /* explosion.mp3 */,
+				29818A4D22675FCA00C2EEB2 /* torpedo.mp3 */,
 				29818A2C22675E1E00C2EEB2 /* Assets.xcassets */,
 				29818A2E22675E1E00C2EEB2 /* LaunchScreen.storyboard */,
 				29818A3122675E1E00C2EEB2 /* Info.plist */,
@@ -131,6 +137,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29818A4E22675FCA00C2EEB2 /* torpedo.mp3 in Resources */,
+				29818A4C22675FC100C2EEB2 /* explosion.mp3 in Resources */,
 				29818A2B22675E1D00C2EEB2 /* Main.storyboard in Resources */,
 				29818A2222675E1D00C2EEB2 /* GameScene.sks in Resources */,
 				29818A2D22675E1E00C2EEB2 /* Assets.xcassets in Resources */,
