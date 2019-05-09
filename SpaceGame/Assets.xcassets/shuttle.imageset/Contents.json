@@ -6,7 +6,7 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "shuttle@2x.png",
+      "filename" : "shuttle@3x-1.png",
       "scale" : "2x"
     },
     {
@@ -18,5 +18,8 @@
   "info" : {
     "version" : 1,
     "author" : "xcode"
+  },
+  "properties" : {
+    "template-rendering-intent" : "original"
   }
 }

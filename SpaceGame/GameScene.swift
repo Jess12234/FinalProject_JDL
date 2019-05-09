@@ -8,6 +8,7 @@
 
 import SpriteKit
 import GameplayKit
+import CoreMotion
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
@@ -29,11 +30,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let photonTorpedoCategory:UInt32 = 0x1 << 0
     
     
+    let motionManager = CMMotionManager()
+    var xAcceleration:CGFloat = 0
+    
+    
     override func didMove(to view: SKView)
     {
         starfield = SKEmitterNode(fileNamed: "Starfield")
         starfield.position = CGPoint(x:0, y: 1472)
-        starfield.advanceSimulationTime(10)
+        starfield.advanceSimulationTime(20)
         self.addChild(starfield)
         
         starfield.zPosition = -1
@@ -58,6 +63,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         gametimer = Timer.scheduledTimer(timeInterval: 0.75, target: self, selector: #selector(addAlien), userInfo: nil, repeats: true)
         
+        
+        motionManager.accelerometerUpdateInterval = 0.2
+        motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data: CMAccelerometerData?, error:Error?) in
+            if let accelerometerData = data{
+                let acceleration = accelerometerData.acceleration
+                self.xAcceleration = CGFloat(acceleration.x) * 0.75 + self.xAcceleration * 0.25
+            }
+        }
+        
+        let backgroundMusic = SKAudioNode(fileNamed: "music.mp3")
+        backgroundMusic.autoplayLooped = true
+        addChild(backgroundMusic)
     }
     
     @objc func addAlien()
@@ -143,13 +160,41 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if (firstBody.categoryBitMask & photonTorpedoCategory) != 0 && (secondBody.categoryBitMask & alienCategory) != 0 {
-            torpedoDidCollideWithAlien(torpedo: firstBody.node as! SKSpriteNode , alien: secondBody.node as! SKSpriteNode)
+            torpedoDidCollideWithAlien(torpedoNode: firstBody.node as! SKSpriteNode , alienNode: secondBody.node as! SKSpriteNode)
         }
+        
     }
     
-    func torpedoDidCollideWithAlien (torpedo: SKSpriteNode, alien:SKSpriteNode)
+    func torpedoDidCollideWithAlien (torpedoNode: SKSpriteNode, alienNode:SKSpriteNode)
     {
+        let explosion = SKEmitterNode(fileNamed: "Explosion")!
+        explosion.position = alienNode.position
+        self.addChild(explosion)
         
+        self.run(SKAction.playSoundFileNamed("explosion.mp3", waitForCompletion: false))
+        
+        torpedoNode.removeFromParent()
+        alienNode.removeFromParent()
+        
+        self.run(SKAction.wait(forDuration: 2))
+        {
+            explosion.removeFromParent()
+        }
+        
+        score += 5
+    }
+    
+    
+    override func didSimulatePhysics() {
+        player.position.x += xAcceleration * 50
+        
+        if player.position.x < -20
+        {
+            player.position = CGPoint(x: self.size.width + 20, y: player.position.y)
+        }
+        else if player.position.x > self.size.width + 20 {
+            player.position = CGPoint(x: -20, y: player.position.y)
+        }
     }
     
     
